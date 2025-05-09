@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="register()" class="register-form">
+    <ion-item lines="none" class="ion-no-padding form-item">
+      <ion-label position="stacked">Usuario</ion-label>
+      <ion-input 
+        type="text" 
+        placeholder="Usuario 1"
+        [(ngModel)]="userData.username"
+        name="username"
+        required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="ion-no-padding form-item">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input 
+        type="email" 
+        placeholder="correo@ejemplo.com"
+        [(ngModel)]="userData.email"
+        name="email"
+        required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="ion-no-padding form-item">
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input 
+        type="password" 
+        placeholder="*********"
+        [(ngModel)]="userData.password"
+        name="password"
+        required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="ion-no-padding form-item">
+      <ion-label position="stacked">Confirmar contraseña</ion-label>
+      <ion-input 
+        type="password" 
+        placeholder="*********"
+        [(ngModel)]="userData.confirmPassword"
+        name="confirmPassword"
+        required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="ion-no-padding form-item">
+      <ion-label position="stacked">Rol</ion-label>
+      <ion-select 
+        placeholder="Selecciona tu rol"
+        [(ngModel)]="userData.role"
+        name="role"
+        interface="action-sheet"
+        required>
+        <ion-select-option value="ayudante">Ayudante</ion-select-option>
+        <ion-select-option value="profesor">Profesor</ion-select-option>
+        <ion-select-option value="estudiante">Estudiante</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button 
+      type="submit"
+      expand="block" 
+      class="ion-margin-top"
+      [disabled]="!isFormValid()">
+      Registrarse
+    </ion-button>
+  </form>
+</ion-content>

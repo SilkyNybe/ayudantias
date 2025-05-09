@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>AYUDANTIAPP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <ion-item lines="none" class="ion-no-padding">
+      <ion-label position="stacked">Usuario</ion-label>
+      <ion-input 
+        type="text" 
+        placeholder="Usuario 1"
+        [(ngModel)]="username">
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="ion-no-padding ion-margin-top">
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input 
+        type="password" 
+        placeholder="*******"
+        [(ngModel)]="password">
+      </ion-input>
+    </ion-item>
+
+    <ion-button 
+      expand="block" 
+      class="ion-margin-top"
+      (click)="login()">
+      Iniciar sesión
+    </ion-button>
+
+    <ion-button 
+      expand="block" 
+      fill="clear"
+      class="ion-margin-top"
+      routerLink="/registro" >
+      Registrarse
+    </ion-button>
+  </div>
+</ion-content>

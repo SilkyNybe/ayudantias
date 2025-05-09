@@ -1,0 +1,153 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="profile-info">
+    <img id="profile-image"
+      [src]="'https://github.com/vagnersabadi/ionic-doctor-appointments-app/blob/main/src/assets/avatar.png?raw=true'">
+    <span id="profile-description">Programación de aplicaciones móviles</span>
+    <h3 id="profile-name">Camilo Hernán Salinas Henríquez</h3>
+
+
+    <div class="ion-text-center group-actions">
+      <ion-button [style.--background]="'#5260ff29'">
+        <ion-icon slot="icon-only" name="chatbox" color="tertiary"></ion-icon>
+      </ion-button>
+      <ion-button [style.--background]="'#eb445a29'">
+        <ion-icon slot="icon-only" name="navigate" color="danger"></ion-icon>
+      </ion-button>
+
+    </div>
+
+  </div>
+
+  <ion-item lines="none" class="title">
+    <ion-label>
+      <div class="sub-title">
+        <strong slot="start">Sobre mi</strong>
+      </div>
+      <p id="about-description">Mi nombre es Camilo Salinas, soy estudiante de último año 
+        de la carrera analista programador computacional, disfruto de programar y ayudar al resto a expandir sus conocimientos. </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item lines="none" class="title schedules">
+    <ion-label>
+      <div class="sub-title">
+        <strong slot="start">Horarios</strong>
+      </div>
+    </ion-label>
+
+    <ion-chip class="chip-months">
+      <ion-icon name="chevron-back"></ion-icon>
+      <ion-label>
+        <strong>Mayo</strong>
+      </ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-chip>
+  </ion-item>
+
+  <ion-grid>
+
+    <ion-row>
+
+      <ion-col size="1.68">
+        <ion-badge class="group-week-day" color="tertiary">
+
+          <div class="week">
+            Lun
+          </div>
+          <div class="day">
+            <ion-text color="light">
+              07
+            </ion-text>
+          </div>
+        </ion-badge>
+      </ion-col>
+
+      <ion-col size="1.68">
+        <ion-badge class="group-week-day" color="light">
+          <div class="week">
+            Mar
+          </div>
+          <div class="day">
+            08
+          </div>
+        </ion-badge>
+      </ion-col>
+      <ion-col size="1.68">
+        <ion-badge class="group-week-day" color="light">
+          <div class="week">
+            Mie
+          </div>
+          <div class="day">
+            09
+          </div>
+        </ion-badge>
+      </ion-col>
+      <ion-col size="1.68">
+        <ion-badge class="group-week-day" color="light">
+          <div class="week">
+            Jue
+          </div>
+          <div class="day">
+            10
+          </div>
+        </ion-badge>
+      </ion-col>
+      <ion-col size="1.68">
+        <ion-badge class="group-week-day" color="light">
+          <div class="week">
+            Vie
+          </div>
+          <div class="day">
+            11
+          </div>
+        </ion-badge>
+      </ion-col>
+      <ion-col size="1.68">
+        <ion-badge class="group-week-day" color="light">
+          <div class="week">
+            Sab
+          </div>
+          <div class="day">
+            12
+          </div>
+        </ion-badge>
+      </ion-col>
+      <ion-col size="1.68">
+        <ion-badge class="group-week-day" color="light">
+          <div class="week">
+            Dom
+          </div>
+          <div class="day">
+            <ion-text>
+              13
+            </ion-text>
+          </div>
+        </ion-badge>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="ion-text-center btn-time-appointment">
+
+    <ion-button class="time">
+      <ion-icon name="time" color="secondary"></ion-icon>
+    </ion-button>
+    <ion-button color="tertiary" class="appointment">
+      Conf. Asistencia
+    </ion-button>
+  </div>
+
+</ion-content>
