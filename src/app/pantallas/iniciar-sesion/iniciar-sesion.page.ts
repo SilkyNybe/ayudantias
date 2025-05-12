@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { IonContent, IonGrid, IonInput, IonCol } from "@ionic/angular/standalone";
 
 @Component({
   standalone:false,

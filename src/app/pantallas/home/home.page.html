@@ -1,12 +1,16 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-item class="header" lines="none">
-    <strong slot="start">Doctor <br> Appointment</strong>
+    <strong slot="start">Ayudantiapp <br> </strong>
 
     <ion-avatar slot="end">
       <img src="https://github.com/vagnersabadi/ionic-doctor-appointments-app/blob/main/src/assets/avatar.png?raw=true">
@@ -15,12 +19,16 @@
   </ion-item>
 
   <ion-item lines="none" class="search">
-    <ion-input placeholder="Search, e.g. Dr.Louis Pasterur">
+    <ion-input placeholder="Buscar por ayudante o materia">
       <ion-button color="tertiary">
         <ion-icon name="search-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-input>
   </ion-item>
+
+  <div class="sub-title">
+    <strong slot="start">Mis Ayudantias</strong>
+  </div>
 
 
   <!-- <ion-slides pager="false" [options]="slideOpts">
@@ -36,15 +44,15 @@
         </span>
       </div>
     </ion-slide>
+
   </ion-slides> -->
-  
 
   <div class="sub-title">
-    <strong slot="start">Top Doctors</strong>
+    <strong slot="start">Ayudantias en proceso</strong>
   </div>
 
   <div class="list-doctors">
-    <ion-item *ngFor="let item of doctors" lines="none" class="ion-activatable ripple-parent">
+    <ion-item *ngFor="let item of doctors" lines="none" class="ion-activatable ripple-parent" (click)="openProfile()">
       <ion-ripple-effect></ion-ripple-effect>
       <ion-thumbnail slot="start">
         <ion-img [src]="item.avatar">
@@ -59,10 +67,18 @@
               {{ item.name }}
             </strong>
           </h3>
+          <h4>
+            <strong>
+              {{ item.sala }}
+            </strong>
+          </h4>
+          <p> {{ item.tema }} </p>
         </ion-text>
       </ion-label>
 
       <ion-icon name="ellipsis-vertical-outline" size="small" slot="end"></ion-icon>
     </ion-item>
   </div>
+
+
 </ion-content>

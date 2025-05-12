@@ -1,42 +1,47 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>AYUDANTIAPP</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="ion-padding">
-  <div class="login-container">
-    <ion-item lines="none" class="ion-no-padding">
-      <ion-label position="stacked">Usuario</ion-label>
-      <ion-input 
-        type="text" 
-        placeholder="Usuario 1"
-        [(ngModel)]="username">
-      </ion-input>
-    </ion-item>
-
-    <ion-item lines="none" class="ion-no-padding ion-margin-top">
-      <ion-label position="stacked">Contraseña</ion-label>
-      <ion-input 
-        type="password" 
-        placeholder="*******"
-        [(ngModel)]="password">
-      </ion-input>
-    </ion-item>
-
-    <ion-button 
-      expand="block" 
-      class="ion-margin-top"
-      (click)="login()">
-      Iniciar sesión
-    </ion-button>
-
-    <ion-button 
-      expand="block" 
-      fill="clear"
-      class="ion-margin-top"
-      routerLink="/registro" >
-      Registrarse
-    </ion-button>
+  <div class="container">
+    <div class="cuadro">
+      <h1 class="titulo">AYUDANTIAPP</h1>
+    </div>
   </div>
+    
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input label="Usuario" 
+        label-placement="floating" fill="outline" 
+        placeholder="Usuario 1"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input label="Contraseña" 
+        label-placement="floating" fill="outline" 
+        placeholder="xxxxxxxxxxx"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button class="boton" 
+          (click)="login()">
+          Iniciar sesión
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button class="boton"
+          routerLink="/registro" >
+          Registrarse
+          </ion-button>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+    
+
+    
+  
 </ion-content>

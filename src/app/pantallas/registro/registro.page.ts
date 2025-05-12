@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonHeader, IonButton, IonLabel } from "@ionic/angular/standalone";
+import { IonHeader, IonButton, IonLabel, IonContent, IonInput } from "@ionic/angular/standalone";
 
 @Component({
   standalone:false,
