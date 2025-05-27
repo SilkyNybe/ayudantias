@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis Ayudantías</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p class="ion-text-muted">Ayudantías en las que estás inscrito</p>
+
+  <!-- Estadísticas -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="book-outline" color="primary" size="large"></ion-icon>
+            <h2>{{ activas }}</h2>
+            <p>Activas</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="trending-up-outline" color="success" size="large"></ion-icon>
+            <h2>{{ promedioAsistencia }}%</h2>
+            <p>Asistencia</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Lista de Ayudantías -->
+  <ion-card
+    *ngFor="let ayudantia of inscritasData"
+    button
+    (click)="navegarADetalle(ayudantia.id)"
+  >
+    <ion-card-header>
+      <ion-card-title>{{ ayudantia.asignatura }}</ion-card-title>
+      <ion-card-subtitle>Por {{ ayudantia.ayudante }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-badge
+        [color]="ayudantia.estado === 'Activa' ? 'primary' : 'medium'"
+      >
+        {{ ayudantia.estado }}
+      </ion-badge>
+
+      <ion-label class="ion-text-wrap">
+        <p>Progreso: {{ ayudantia.progreso }}%</p>
+        <ion-progress-bar
+          [value]="ayudantia.progreso / 100"
+          color="primary"
+        ></ion-progress-bar>
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-icon name="time-outline" slot="start"></ion-icon>
+        <ion-label>{{ ayudantia.proximaClase }}</ion-label>
+        <ion-note slot="end">Asistencia: {{ ayudantia.asistencia }}%</ion-note>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="goToAyudantias()">
+          <ion-icon name="book-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="goToInscritas()">
+          <ion-icon name="checkbox-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="goToVotaciones()">
+          <ion-icon name="git-network-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="goToPerfil()">
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

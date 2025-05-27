@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Votaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="abrirModal()">
+    <ion-icon name="add-outline" slot="start"></ion-icon>
+    Proponer
+  </ion-button>
+
+  <ion-list *ngFor="let votacion of votaciones">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ votacion.asignatura }}</ion-card-title>
+        <ion-note>
+          <ion-icon name="person-outline"></ion-icon>
+          Propuesta por {{ votacion.solicitante }}
+        </ion-note>
+        <ion-badge [color]="votacion.estado === 'Activa' ? 'success' : 'medium'">{{ votacion.estado }}</ion-badge>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{ votacion.descripcion }}</p>
+
+        <div class="ion-margin-vertical">
+          <p>Aprobación: {{ getPorcentajeAceptar(votacion) }}% ({{ getTotalVotos(votacion) }} votos)</p>
+          <ion-progress-bar [value]="getPorcentajeAceptar(votacion) / 100"></ion-progress-bar>
+          <p>✅ {{ votacion.votos.aceptar }} &nbsp; ❌ {{ votacion.votos.rechazar }}</p>
+        </div>
+
+        <div class="ion-text-start ion-margin-vertical">
+          <ion-icon name="time-outline"></ion-icon>
+          {{ getDiasRestantes(votacion.fechaLimite) > 0 ? getDiasRestantes(votacion.fechaLimite) + ' días restantes' : 'Votación cerrada' }}
+        </div>
+
+        <div *ngIf="votacion.estado === 'Activa' && getDiasRestantes(votacion.fechaLimite) > 0">
+          <ion-button expand="block" color="success" (click)="votar(votacion.id, 'aceptar')">
+            <ion-icon name="thumbs-up-outline" slot="start"></ion-icon>
+            Aceptar
+          </ion-button>
+          <ion-button expand="block" color="danger" (click)="votar(votacion.id, 'rechazar')">
+            <ion-icon name="thumbs-down-outline" slot="start"></ion-icon>
+            Rechazar
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <!-- Modal -->
+  <ion-modal [isOpen]="mostrarModal" (didDismiss)="cerrarModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Proponer Asignatura</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label position="floating">Asignatura</ion-label>
+          <ion-input [(ngModel)]="nuevaAsignatura"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Descripción</ion-label>
+          <ion-input [(ngModel)]="descripcion"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" (click)="proponer()" [disabled]="!nuevaAsignatura.trim()">Proponer</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="goToAyudantias()">
+          <ion-icon name="book-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="goToInscritas()">
+          <ion-icon name="checkbox-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="goToVotaciones()">
+          <ion-icon name="git-network-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="goToPerfil()">
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

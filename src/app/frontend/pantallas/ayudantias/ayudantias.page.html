@@ -1,0 +1,86 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Ayudantias disponibles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Búsqueda -->
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    placeholder="Buscar por asignatura o ayudante..."
+    debounce="300"
+    animated
+  ></ion-searchbar>
+
+  <!-- Filtros por carrera -->
+  <ion-segment [(ngModel)]="selectedCarrera" scrollable>
+    <ion-segment-button *ngFor="let carrera of carreras" [value]="carrera">
+      {{ carrera }}
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Lista de Ayudantías -->
+  <ion-card
+    *ngFor="let ayudantia of filteredAyudantias"
+    button
+    (click)="irADetalle(ayudantia.id)"
+  >
+    <ion-card-header>
+      <ion-card-title>{{ ayudantia.asignatura }}</ion-card-title>
+      <ion-card-subtitle>Por {{ ayudantia.ayudante }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ ayudantia.descripcion }}</p>
+
+      <ion-chip color="light" class="ion-margin-top">
+        <ion-icon name="time-outline" slot="start"></ion-icon>
+        {{ ayudantia.horario }}
+      </ion-chip>
+
+      <ion-chip color="light">
+        <ion-icon name="people-outline" slot="start"></ion-icon>
+        {{ ayudantia.inscritos }} inscritos
+      </ion-chip>
+
+      <ion-chip color="warning">
+        <ion-icon name="star" slot="start"></ion-icon>
+        {{ ayudantia.rating }}
+      </ion-chip>
+
+      <ion-badge
+        [color]="ayudantia.disponible ? 'success' : 'medium'"
+        class="ion-margin-top"
+      >
+        {{ ayudantia.disponible ? 'Disponible' : 'Lleno' }}
+      </ion-badge>
+
+      <ion-badge color="primary" class="ion-margin-start">
+        {{ ayudantia.carrera }}
+      </ion-badge>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="goToAyudantias()">
+          <ion-icon name="book-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="goToInscritas()">
+          <ion-icon name="checkbox-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="goToVotaciones()">
+          <ion-icon name="git-network-outline"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button (click)="goToPerfil()">
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
