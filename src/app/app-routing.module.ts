@@ -4,70 +4,41 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'iniciar-sesion',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./presentation/pantallas/folder/folder.module').then( m => m.FolderPageModule)
+    path: 'login',
+    loadChildren: () => import('./frontend/pantallas/login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./frontend/pantallas/registro/registro.module').then(m => m.RegistroPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./frontend/pantallas/recuperar/recuperar.module').then(m => m.RecuperarPageModule)
   },
   {
     path: 'home',
-    loadChildren: () => import('./presentation/pantallas/home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'iniciar-sesion',
-    loadChildren: () => import('./presentation/pantallas/iniciar-sesion/iniciar-sesion.module').then( m => m.IniciarSesionPageModule)
-  },
-  {
-    path: 'registro',
-    loadChildren: () => import('./presentation/pantallas/registro/registro.module').then( m => m.RegistroPageModule)
+    loadChildren: () => import('./frontend/pantallas/ayudantias/ayudantias.module').then(m => m.AyudantiasPageModule)
   },
   {
     path: 'ayudantias',
-    loadChildren: () => import('./frontend/pantallas/ayudantias/ayudantias.module').then( m => m.AyudantiasPageModule)
+    loadChildren: () => import('./frontend/pantallas/ayudantias/ayudantias.module').then(m => m.AyudantiasPageModule)
   },
   {
     path: 'inscritas',
-    loadChildren: () => import('./frontend/pantallas/inscritas/inscritas.module').then( m => m.InscritasPageModule)
+    loadChildren: () => import('./frontend/pantallas/inscritas/inscritas.module').then(m => m.InscritasPageModule)
   },
   {
     path: 'votaciones',
-    loadChildren: () => import('./frontend/pantallas/votaciones/votaciones.module').then( m => m.VotacionesPageModule)
+    loadChildren: () => import('./frontend/pantallas/votaciones/votaciones.module').then(m => m.VotacionesPageModule)
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./frontend/pantallas/perfil/perfil.module').then( m => m.PerfilPageModule)
-  },
-  {
-    path: 'detalle-inscritas',
-    loadChildren: () => import('./frontend/pantallas/detalle-inscritas/detalle-inscritas.module').then( m => m.DetalleInscritasPageModule)
-  },
-  {
-    path: 'usuarios',
-    loadChildren: () => import('./frontend/pantallas/usuarios/usuarios.module').then( m => m.UsuariosPageModule)
-  },  {
-    path: 'login',
-    loadChildren: () => import('./frontend/pantallas/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'registro',
-    loadChildren: () => import('./frontend/pantallas/registro/registro.module').then( m => m.RegistroPageModule)
-  },
-  {
-    path: 'recuperar-contrasenia',
-    loadChildren: () => import('./frontend/pantallas/recuperar-contrasenia/recuperar-contrasenia.module').then( m => m.RecuperarContraseniaPageModule)
-  },
-  {
-    path: 'recuperar',
-    loadChildren: () => import('./frontend/pantallas/recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+    loadChildren: () => import('./frontend/pantallas/perfil/perfil.module').then(m => m.PerfilPageModule)
   }
-
-
-
-
-
-
 ];
 
 @NgModule({
