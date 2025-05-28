@@ -1,0 +1,43 @@
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Iniciar Sesión</ion-card-title>
+      <p class="ion-text-center">Accede a tu cuenta de ayudantías</p>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="form" (ngSubmit)="handleLogin()">
+        <ion-item>
+          <ion-label position="floating">Correo electrónico</ion-label>
+          <ion-input type="email" formControlName="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" formControlName="password" required></ion-input>
+        </ion-item>
+
+        <ion-button
+          type="submit"
+          expand="block"
+          color="primary"
+          [disabled]="loading || form.invalid"
+        >
+          {{ loading ? 'Iniciando sesión...' : 'Acceder' }}
+        </ion-button>
+      </form>
+
+      <div class="ion-text-center ion-margin-top">
+        <ion-text>
+          <a routerLink="/forgot-password" class="text-primary">¿Olvidaste tu contraseña?</a>
+        </ion-text>
+        <br />
+        <ion-text color="medium">
+          ¿No tienes cuenta?
+          <a routerLink="/register" class="text-primary">Regístrate aquí</a>
+        </ion-text>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

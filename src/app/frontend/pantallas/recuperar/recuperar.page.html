@@ -1,0 +1,48 @@
+<ion-content class="ion-padding">
+  <ng-container *ngIf="!sent; else sentMessage">
+    <ion-card>
+      <ion-card-header>
+        <ion-buttons slot="start">
+          <ion-button fill="clear" (click)="goToLogin()">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-card-title class="ion-text-center">Recuperar contraseña</ion-card-title>
+        <p class="ion-text-center">Ingresa tu correo para recibir un enlace de recuperación</p>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+          <ion-item>
+            <ion-label position="floating">Correo electrónico</ion-label>
+            <ion-input type="email" formControlName="email" required></ion-input>
+          </ion-item>
+
+          <ion-button
+            type="submit"
+            expand="block"
+            color="primary"
+            [disabled]="loading || form.invalid"
+          >
+            {{ loading ? 'Enviando...' : 'Enviar enlace de recuperación' }}
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <ng-template #sentMessage>
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <ion-icon name="mail-outline" size="large" color="success"></ion-icon>
+        <h2 class="ion-margin-top">Correo enviado</h2>
+        <p class="ion-text-wrap">
+          Hemos enviado un enlace de recuperación a tu correo electrónico.
+        </p>
+        <ion-button expand="block" class="ion-margin-top" color="primary" (click)="goToLogin()">
+          Volver al inicio de sesión
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-content>

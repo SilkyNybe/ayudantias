@@ -46,7 +46,23 @@ const routes: Routes = [
   {
     path: 'usuarios',
     loadChildren: () => import('./frontend/pantallas/usuarios/usuarios.module').then( m => m.UsuariosPageModule)
+  },  {
+    path: 'login',
+    loadChildren: () => import('./frontend/pantallas/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./frontend/pantallas/registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: 'recuperar-contrasenia',
+    loadChildren: () => import('./frontend/pantallas/recuperar-contrasenia/recuperar-contrasenia.module').then( m => m.RecuperarContraseniaPageModule)
+  },
+  {
+    path: 'recuperar',
+    loadChildren: () => import('./frontend/pantallas/recuperar/recuperar.module').then( m => m.RecuperarPageModule)
   }
+
 
 
 
