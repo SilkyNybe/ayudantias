@@ -1,10 +1,9 @@
-export class Usuario {
-  constructor(
-    public id: number,
-    public rut: string,
-    public nombre: string,
-    public apellido: string,
-    public correo: string,
-    public rol_id: number
-  ) {}
+export interface Usuario {
+  id_usu: number,
+  nombre_usu: string,
+  apellido_usu: string,
+  correo_usu: string,
+  telefono: string,
+  contrasena: string,
+  id_rol: number
 }
