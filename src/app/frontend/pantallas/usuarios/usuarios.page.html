@@ -1,16 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Usuarios</ion-title>
+    <ion-title>Lista de Usuarios</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let usuario of usuarios">
+<ion-content class="ion-padding">
+  <ion-list *ngIf="usuarios.length > 0; else sinUsuarios">
+    <ion-item *ngFor="let u of usuarios">
       <ion-label>
-        <h2>{{ usuario.nombre }} {{ usuario.apellido }}</h2>
-        <p>{{ usuario.correo}}</p>
+        <h2>{{ u.nombre_usu }} {{ u.apellido_usu }}</h2>
+        <p>Correo: {{ u.correo_usu }}</p>
+        <p>Teléfono: {{ u.telefono }}</p>
+        <p>Rol ID: {{ u.id_rol }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
+
+  <ng-template #sinUsuarios>
+    <ion-text>No hay usuarios disponibles.</ion-text>
+  </ng-template>
 </ion-content>

@@ -15,7 +15,7 @@
   ></ion-searchbar>
 
   <!-- Filtros por carrera -->
-  <ion-segment [(ngModel)]="selectedCarrera" scrollable>
+  <ion-segment [(ngModel)]="selectedEstado" scrollable>
     <ion-segment-button *ngFor="let carrera of carreras" [value]="carrera">
       {{ carrera }}
     </ion-segment-button>
@@ -28,8 +28,8 @@
     (click)="irADetalle(ayudantia.id)"
   >
     <ion-card-header>
-      <ion-card-title>{{ ayudantia.asignatura }}</ion-card-title>
-      <ion-card-subtitle>Por {{ ayudantia.ayudante }}</ion-card-subtitle>
+      <ion-card-title>{{ ayudantia.nombre }}</ion-card-title>
+      <ion-card-subtitle>Por {{ ayudantia.tema }}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
@@ -37,28 +37,25 @@
 
       <ion-chip color="light" class="ion-margin-top">
         <ion-icon name="time-outline" slot="start"></ion-icon>
-        {{ ayudantia.horario }}
+        {{ ayudantia.hora_ini }}
       </ion-chip>
 
       <ion-chip color="light">
         <ion-icon name="people-outline" slot="start"></ion-icon>
-        {{ ayudantia.inscritos }} inscritos
+        {{ ayudantia.estado }} inscritos
       </ion-chip>
 
-      <ion-chip color="warning">
-        <ion-icon name="star" slot="start"></ion-icon>
-        {{ ayudantia.rating }}
-      </ion-chip>
+
 
       <ion-badge
-        [color]="ayudantia.disponible ? 'success' : 'medium'"
+        [color]="ayudantia.estado ? 'success' : 'medium'"
         class="ion-margin-top"
       >
-        {{ ayudantia.disponible ? 'Disponible' : 'Lleno' }}
+        {{ ayudantia.estado ? 'Disponible' : 'Lleno' }}
       </ion-badge>
 
       <ion-badge color="primary" class="ion-margin-start">
-        {{ ayudantia.carrera }}
+        {{ ayudantia.tema }}
       </ion-badge>
     </ion-card-content>
   </ion-card>

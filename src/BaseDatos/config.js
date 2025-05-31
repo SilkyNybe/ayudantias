@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-//printea los datos del archivo .env
+
 
 console.log('DB_USER:', process.env.DB_USER);
 console.log('DB_HOST:', process.env.DB_HOST);

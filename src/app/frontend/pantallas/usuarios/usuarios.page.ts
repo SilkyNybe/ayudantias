@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuariosService } from '../../servicios/usuarios.service'
-import { Usuario } from '../../../core/models/usuario.model'
-import { IonHeader, IonToolbar, IonItem, IonLabel, IonTitle } from "@ionic/angular/standalone";
+import { UsuariosService } from '../../servicios/usuarios.service';
+import { Usuario } from '../../../core/models/usuario.model';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -14,9 +14,10 @@ export class UsuariosPage implements OnInit {
   constructor(private usuariosService: UsuariosService) {}
 
   ngOnInit() {
-    this.usuariosService.getUsuarios().subscribe(data => {
-      this.usuarios = data;
-    });
-  }
+  this.usuariosService.getUsuarios().subscribe((data) => {
+    console.log('Usuarios cargados:', data);  // 👈 Agrega esto
+    this.usuarios = data;
+  });
+}
 }
 
