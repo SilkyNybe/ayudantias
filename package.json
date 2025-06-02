@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "ng": "ng",
-    "dev": "node --watch src/BaseDatos/index.js",
+    "dev": "node --watch index.js",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
