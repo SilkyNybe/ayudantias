@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import  {pool} from '../db.js';
-import {crearUsuario, deleteUsuario, getUsuarioId, getUsuarios, updateUsuario} from '../controllers/users.controllers.js';
+import {crearUsuario, deleteUsuario, getUsuarioId, getUsuarios, updateUsuario, loginUsuario} from '../controllers/users.controllers.js';
 const router = Router();
 
 //OBTENER TODOS LOS USUARIOS
@@ -17,6 +17,11 @@ router.delete('/usuarios/:id_usu', deleteUsuario);
 
 //EDITAR UN USUARIO
 router.put('/usuarios/:id_usu', updateUsuario);
+
+
+//LOGIN DE USUARIO
+
+router.post('/login', loginUsuario);
 
 
 export default router;

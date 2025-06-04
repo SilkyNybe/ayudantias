@@ -9,11 +9,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./frontend/pantallas/login/login.module').then(m => m.LoginPageModule)
+    loadChildren: () =>
+      import('./frontend/pantallas/login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'register',
-    loadChildren: () => import('./frontend/pantallas/registro/registro.module').then(m => m.RegistroPageModule)
+    path: 'registro',
+    loadChildren: () =>
+      import('./frontend/pantallas/registro/registro.module').then(m => m.RegistroPageModule)
   },
   {
     path: 'forgot-password',
