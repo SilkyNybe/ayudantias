@@ -1,54 +1,65 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { NavController, AlertController } from '@ionic/angular';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonCardHeader } from "@ionic/angular/standalone";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../servicios/auth.service';
+import { NavController, ToastController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-registro',
   templateUrl: './registro.page.html',
-  styleUrls: ['./registro.page.scss'],
-  standalone:false
+  standalone:false,
+  styleUrls: ['./registro.page.scss']
 })
-export class RegistroPage {
-  loading = false;
-
-  form = this.fb.group({
-    name: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required],
-  });
+export class RegistroPage implements OnInit {
+  registerForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
+    private authService: AuthService,
     private navCtrl: NavController,
-    private alertCtrl: AlertController
-  ) {}
+    private toastCtrl: ToastController
+  ) {
+    this.registerForm = this.fb.group({
+      nombre_usu: ['', [Validators.required]],
+      apellido_usu: ['', [Validators.required]],
+      correo_usu: ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required, Validators.minLength(8)]],
+      contrasena: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
-  async handleSubmit() {
-    if (this.form.invalid) return;
+  ngOnInit() {}
 
-    const { password, confirmPassword, name, email } = this.form.value;
-
-    if (password !== confirmPassword) {
-      const alert = await this.alertCtrl.create({
-        header: 'Error',
-        message: 'Las contraseñas no coinciden',
-        buttons: ['OK'],
+  async onSubmit() {
+    if (this.registerForm.invalid) {
+      const toast = await this.toastCtrl.create({
+        message: 'Por favor, completa todos los campos correctamente.',
+        duration: 2000,
+        color: 'warning'
       });
-      await alert.present();
+      await toast.present();
       return;
     }
 
-    this.loading = true;
-
-    setTimeout(() => {
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('userRole', 'Estudiante');
-      localStorage.setItem('userName', name!);
-      localStorage.setItem('userEmail', email!);
-      this.navCtrl.navigateForward('/home');
-      this.loading = false;
-    }, 1000);
+    const data = this.registerForm.value; // {nombre_usu, apellido_usu, correo_usu, telefono, contrasena}
+    this.authService.register(data).subscribe({
+      next: async (res: any) => {
+        const toast = await this.toastCtrl.create({
+          message: 'Registro exitoso. Ya puedes iniciar sesión.',
+          duration: 2000,
+          color: 'success'
+        });
+        await toast.present();
+        this.navCtrl.navigateRoot('/login');
+      },
+      error: async (err: any) => {
+        const mensaje = err.error?.message || 'Error en el registro.';
+        const toast = await this.toastCtrl.create({
+          message: mensaje,
+          duration: 2000,
+          color: 'danger'
+        });
+        await toast.present();
+      }
+    });
   }
 }

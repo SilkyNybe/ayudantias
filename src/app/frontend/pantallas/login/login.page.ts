@@ -1,35 +1,56 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../servicios/auth.service';
+import { NavController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
-  standalone:false
+  standalone:false,
+  styleUrls: ['./login.page.scss']
 })
-export class LoginPage {
-  loading = false;
+export class LoginPage implements OnInit {
+  loginForm: FormGroup;
 
-  form = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-  });
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private navCtrl: NavController,
+    private toastCtrl: ToastController
+  ) {
+    this.loginForm = this.fb.group({
+      correo_usu: ['', [Validators.required, Validators.email]],
+      contrasena: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
-  constructor(private fb: FormBuilder, private navCtrl: NavController) {}
+  ngOnInit() {}
 
-  async handleLogin() {
-    if (this.form.invalid) return;
+  async onLogin() {
+    if (this.loginForm.invalid) {
+      const toast = await this.toastCtrl.create({
+        message: 'Por favor, ingresa correo y contraseña válidos.',
+        duration: 2000,
+        color: 'warning'
+      });
+      await toast.present();
+      return;
+    }
 
-    this.loading = true;
-
-    setTimeout(() => {
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('userRole', 'Estudiante');
-      localStorage.setItem('userName', 'Juan Pérez');
-      localStorage.setItem('userEmail', this.form.value.email!);
-      this.navCtrl.navigateForward('/home');
-      this.loading = false;
-    }, 1000);
+    const { correo_usu, contrasena } = this.loginForm.value;
+    this.authService.login({ correo_usu, contrasena }).subscribe({
+      next: async (res: any) => {
+        this.navCtrl.navigateRoot('/home');
+      },
+      error: async (err: any) => {
+        const mensaje = err.error?.message || 'Credenciales inválidas.';
+        const toast = await this.toastCtrl.create({
+          message: mensaje,
+          duration: 2000,
+          color: 'danger'
+        });
+        await toast.present();
+      }
+    });
   }
 }

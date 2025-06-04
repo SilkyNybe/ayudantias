@@ -1,48 +1,41 @@
-<ion-content class="ion-padding">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title class="ion-text-center">Registro</ion-card-title>
-      <p class="ion-text-center">Crea tu cuenta de ayudantías</p>
-    </ion-card-header>
+<!-- src/app/pages/register/register.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-    <ion-card-content>
-      <form [formGroup]="form" (ngSubmit)="handleSubmit()">
-        <ion-item>
-          <ion-label position="floating">Nombre completo</ion-label>
-          <ion-input type="text" formControlName="name" required></ion-input>
-        </ion-item>
+<ion-content>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <ion-list lines="full">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="nombre_usu" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input formControlName="apellido_usu" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input formControlName="correo_usu" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Teléfono</ion-label>
+        <ion-input formControlName="telefono" type="tel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input formControlName="contrasena" type="password"></ion-input>
+      </ion-item>
+    </ion-list>
 
-        <ion-item>
-          <ion-label position="floating">Correo institucional</ion-label>
-          <ion-input type="email" formControlName="email" required></ion-input>
-        </ion-item>
+    <ion-button expand="full" type="submit" [disabled]="registerForm.invalid">
+      Registrarse
+    </ion-button>
 
-        <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" formControlName="password" required></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Confirmar contraseña</ion-label>
-          <ion-input type="password" formControlName="confirmPassword" required></ion-input>
-        </ion-item>
-
-        <ion-button
-          type="submit"
-          expand="block"
-          color="primary"
-          [disabled]="loading || form.invalid"
-        >
-          {{ loading ? 'Registrando...' : 'Registrarse' }}
-        </ion-button>
-      </form>
-
-      <div class="ion-text-center ion-margin-top">
-        <ion-text color="medium">
-          ¿Ya tienes cuenta?
-          <a routerLink="/login" class="text-primary">Inicia sesión aquí</a>
-        </ion-text>
-      </div>
-    </ion-card-content>
-  </ion-card>
+    <ion-text class="ion-text-center">
+      <p>¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+    </ion-text>
+  </form>
 </ion-content>
